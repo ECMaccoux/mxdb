@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { firestore } from "../firebase"
+
+import { auth, firestore } from "../firebase"
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { Row, Col } from "react-bootstrap";
 import { Form, Table } from "react-bootstrap";
@@ -48,6 +50,8 @@ function deleteGameFromDB(gameID) {
 }
 
 function Search() {
+    const [user] = useAuthState(auth);
+
     const [titleQuery, setTitleQuery] = useState("");
     const [systemQuery, setSystemQuery] = useState("");
 
@@ -81,7 +85,7 @@ function Search() {
                         <tr>
                             <th>Name</th>
                             <th>Console</th>
-                            <th></th>
+                            {user && user.uid === 'psj3p9o9alTShS0GtjAvS91a29y1' && <th></th>}
                         </tr>
                     </thead>
                     <tbody>

@@ -51,7 +51,7 @@ function AddGame() {
 
     return (
         <div className="ml-auto">
-            <Button variant="danger" onClick={handleShow}>Add</Button>
+            <Button variant="danger" onClick={handleShow} style={{marginRight: 7}}>Add</Button>
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
