@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { firestore } from "../firebase"
+
+import { auth, firestore } from "../firebase"
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { Row, Col } from "react-bootstrap";
 import { Form, Table } from "react-bootstrap";
@@ -40,7 +42,16 @@ function GetSystems() {
     return systems;
 }
 
+function deleteGameFromDB(gameID) {
+    gamesRef.doc(gameID).delete()
+        .catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+}
+
 function Search() {
+    const [user] = useAuthState(auth);
+
     const [titleQuery, setTitleQuery] = useState("");
     const [systemQuery, setSystemQuery] = useState("");
 
@@ -69,15 +80,17 @@ function Search() {
                 </Col>
             </Row>
             <Row>
-                <Table bordered hover responsive>
+                <Table bordered hover>
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Console</th>
+                            {user && user.uid === 'psj3p9o9alTShS0GtjAvS91a29y1' && <th></th>}
                         </tr>
                     </thead>
                     <tbody>
-                        {games.map(game => <SearchItem key={game.id} gameID={game.id} title={game.title} system={game.system.id} titleQuery={titleQuery} systemQuery={systemQuery} />)}
+                        {games.map(game => <SearchItem key={game.id} gameID={game.id} title={game.title} system={game.system.id} 
+                            titleQuery={titleQuery} systemQuery={systemQuery} deleteGame={deleteGameFromDB} />)}
                     </tbody>
                 </Table>
             </Row>

@@ -1,4 +1,4 @@
-import './App.css';
+import './css/App.css';
 
 import React from "react";
 import { useState } from "react";
@@ -33,7 +33,7 @@ function SignIn(props) {
 }
 
 function SignOut() {
-  return <Button variant="outline-light" style={{marginLeft: 7}} onClick={() => auth.signOut()}>Sign Out</Button>
+  return <Button variant="outline-light" onClick={() => auth.signOut()}>Sign Out</Button>
 }
 
 function App() {
