@@ -32,7 +32,7 @@ function GetSystems() {
         systemsRef.onSnapshot((snapshot) => {
             const newSystems = snapshot.docs.sort().map((doc) => ({
                 id: doc.id,
-                ... doc.data()
+                ...doc.data()
             }));
             setSystems(newSystems);
         })
