@@ -89,8 +89,7 @@ function Search() {
                         </tr>
                     </thead>
                     <tbody>
-                        {games.map(game => <SearchItem key={game.id} gameID={game.id} title={game.title} system={game.system.id} 
-                            titleQuery={titleQuery} systemQuery={systemQuery} deleteGame={deleteGameFromDB} />)}
+                        {games.map(game => <SearchItem key={game.id} game={game} titleQuery={titleQuery} systemQuery={systemQuery} deleteGame={deleteGameFromDB} />)}
                     </tbody>
                 </Table>
             </Row>
