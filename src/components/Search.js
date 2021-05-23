@@ -40,6 +40,13 @@ function GetSystems() {
     return systems;
 }
 
+function deleteGameFromDB(gameID) {
+    gamesRef.doc(gameID).delete()
+        .catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+}
+
 function Search() {
     const [titleQuery, setTitleQuery] = useState("");
     const [systemQuery, setSystemQuery] = useState("");
@@ -69,15 +76,17 @@ function Search() {
                 </Col>
             </Row>
             <Row>
-                <Table bordered hover responsive>
+                <Table bordered hover>
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Console</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {games.map(game => <SearchItem key={game.id} gameID={game.id} title={game.title} system={game.system.id} titleQuery={titleQuery} systemQuery={systemQuery} />)}
+                        {games.map(game => <SearchItem key={game.id} gameID={game.id} title={game.title} system={game.system.id} 
+                            titleQuery={titleQuery} systemQuery={systemQuery} deleteGame={deleteGameFromDB} />)}
                     </tbody>
                 </Table>
             </Row>
