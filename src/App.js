@@ -56,7 +56,7 @@ function App() {
       </Modal>
 
       <Navbar className="navbar" bg="secondary" variant="dark" expand="md">
-        <Navbar.Brand href="#">MXDB</Navbar.Brand>
+        <Navbar.Brand href="#"><img alt="MXDB logo" src="main-transparent-white.png" height='30px' className='pb-1 mr-2' /></Navbar.Brand>
         <Navbar.Text>MaccouX DataBase</Navbar.Text>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
