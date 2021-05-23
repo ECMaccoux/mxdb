@@ -20,7 +20,7 @@ function DeleteGame(props) {
                 <Modal.Body>Do you wish to delete {props.title} from your collection?</Modal.Body>
                 <Modal.Footer>
                     <Button variant="outline-danger" onClick={handleClose}>Cancel</Button>
-                    <Button variant="danger" onClick={() => {props.deleteGame(props.gameID); handleClose();}}>Delete</Button>
+                    <Button variant="danger" onClick={() => {props.deleteGame(props.game.id); handleClose();}}>Delete</Button>
                 </Modal.Footer>
             </Modal>
         </React.Fragment>
