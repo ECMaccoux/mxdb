@@ -50,7 +50,7 @@ function AddGame() {
     const systems = GetSystems();
 
     return (
-        <div>
+        <div className="ml-auto">
             <Button variant="danger" onClick={handleShow}>Add</Button>
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
