@@ -6,6 +6,8 @@ import { Button, Modal } from "react-bootstrap";
 import { auth, firestore } from "../firebase"
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+import DeleteGame from './DeleteGame';
+
 const systemsRef = firestore.collection("systems");
 
 function renderSearchItem(title, system, titleQuery, systemQuery) {
@@ -42,19 +44,11 @@ function SearchItem(props) {
                 <td style={{verticalAlign: "middle"}}>{props.title}</td>
                 <td style={{verticalAlign: "middle"}}>{systemName}</td>
                 {user && user.uid === 'psj3p9o9alTShS0GtjAvS91a29y1'
-                    && <td style={{verticalAlign: "middle"}}><Button variant="danger" onClick={handleShow}>Delete</Button></td>}
+                    && <td style={{verticalAlign: "middle"}}>
+                        <Button variant="outline-dark" style={{marginRight: 7}} onClick={handleShow}>Edit</Button>
+                        <DeleteGame gameID={props.gameID} deleteGame={props.deleteGame} />
+                    </td>}
             </tr>
-
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Delete Game</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Do you wish to delete {props.title} from your collection?</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="outline-danger" onClick={handleClose}>Cancel</Button>
-                    <Button variant="danger" onClick={() => {props.deleteGame(props.gameID); handleClose();}}>Delete</Button>
-                </Modal.Footer>
-            </Modal>
         </React.Fragment>
     )
 }
